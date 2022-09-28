@@ -1,0 +1,106 @@
+package selenium;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Linkedin {
+
+	public static void main(String[] args) throws InterruptedException, IOException {
+		System.setProperty("webdriver.chrome.driver",
+        		"C:\\Users\\VismayaJ\\Downloads\\chromedriver_win32\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        //opens google page
+        driver.get("https://www.google.com");
+        
+        //from google navigates to linkedinpage
+        driver.navigate().to("https://www.linkedin.com/");
+        
+        //maximizes the window
+        driver.manage().window().maximize();
+        
+        //Clicks on Sign in
+        driver.findElement(By.linkText("Sign in")).click();
+        
+        //enters the username
+        WebElement username=driver.findElement(By.id("username"));
+        username.sendKeys("jvvismaya@gmail.com");
+        
+        //enters password
+        WebElement password =driver.findElement(By.name("session_password"));
+        password.sendKeys("Maya@2008");
+        
+        //clicks on signin button
+        driver.findElement(By.xpath("//*[@id=\"organic-div\"]/form/div[3]/button")).click();
+        
+        //after signing in in search it searches for qyrus page
+        driver.findElement(By.xpath("//*[@id=\"global-nav-typeahead\"]/input")).sendKeys("qyrus");
+        driver.findElement(By.xpath("//*[@id=\"global-nav-typeahead\"]/input")).sendKeys(Keys.ENTER);
+        Thread.sleep(3000);
+        
+                     
+        //goes to messages and search for specific name
+        driver.findElement(By.xpath("//*[@id=\"msg-overlay-list-bubble-search__search-typeahead-input\"]")).sendKeys("bhoomika k.m");
+        driver.findElement(By.id("msg-overlay-list-bubble-search__search-typeahead-input")).sendKeys(Keys.ARROW_DOWN);
+        driver.findElement(By.id("msg-overlay-list-bubble-search__search-typeahead-input")).sendKeys(Keys.ENTER);
+        Thread.sleep(10000);
+        
+      //goes to another section such as mynetwork
+       driver.findElement(By.xpath("//*[@id=\"global-nav\"]/div/nav/ul/li[2]/a/span")).click();
+       Thread.sleep(2000);
+        
+        //screenshot
+        File screenshotfile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(screenshotfile,new File(".//screenshot/screen2.png"));
+        Thread.sleep(10000);
+        
+        driver.quit();
+    }
+
+	}
+
+
+flipkart
+
+package selenium;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+
+
+public class msedge {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.edge.driver", "C:\\Users\\VismayaJ\\Downloads\\edgedriver_win64 (1)\\msedgedriver.exe");
+		WebDriver driver = new EdgeDriver();
+		//driver.get("https://www.google.com");
+		//WebElement search = driver.findElement(By.name("q"));
+		//search.sendKeys("https://www.flipkart.com");
+		//search.submit();
+		//driver.findElement(By.linkText("Flipkart")).click();
+		driver.get("https://www.flipkart.com");
+		driver.manage().window().maximize();
+		driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div/div[2]/div/form/div[1]/input")).sendKeys("7338025243");
+		driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div/div[2]/div/form/div[2]/input")).sendKeys("Vismaya@2008");
+		driver.findElement(By.cssSelector("body > div._2Sn47c > div > div > div > div > div._36HLxm.col.col-3-5 > div > form > div._1D1L_j > button")).submit();
+		WebElement searchbox = driver.findElement(By.name("q"));
+		searchbox.sendKeys("realme mobile");
+		searchbox.submit();
+		driver.findElement(By.linkText("realme C25_Y (Metal Grey, 64 GB)")).click();
+		
+		
+		
+		
+
+	
+	}
+}
